@@ -1,0 +1,48 @@
+
+
+
+class Solution
+{
+    //Function to evaluate a postfix expression.
+    public static int evaluatePostFix(String S)
+    {
+        // Your code here\
+        int c =0;
+        Stack<Integer> st = new Stack<>();
+        int a =0, b=0;
+        for(int i=0; i<S.length(); i++){
+            char ch = S.charAt(i);
+            
+            if(ch=='+' || ch=='-' || ch == '*' || ch == '/'){
+                a= st.pop() ;
+                b = st.pop();
+                
+                switch(ch){
+                    case '+':
+                         c = a + b;
+                        st.push(c);
+                        break;
+                    
+                    case '-':
+                           c = b-a;
+                          st.push(c);
+                          break;
+                   case '*':
+                           c = b*a;
+                          st.push(c);
+                          break;
+                          
+                    case '/':
+                           c = b/a;
+                          st.push(c);
+                          break;
+                }
+            }
+            
+            else
+            st.push(ch-'0');
+        }
+        
+        return st.pop();
+    }
+}
